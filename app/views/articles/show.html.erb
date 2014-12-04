@@ -1,20 +1,17 @@
-<div class="article">
-	<p>
-	  <strong>Title:</strong>
-	  <%= @article.title %>
-	</p>
-	 
-
+<div class="container-fluid">
 	<div>
-		<%= get_content2(@article.text["contentData"]["images"][0]) %>
-		<%= render partial: "image", locals: {image: get_content2(@article.text["contentData"]["images"][0])} %>
-	</div>	
-
-
-	<p>
-	  <strong>Text:</strong>
-	  <%= JSON.pretty_generate(@article.text) %>
-	</p>
+		<%= render partial: "header" %>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<div>
+				<%= render partial: "article", locals: {article: get_content("1.121")} %>
+			</div>	
+		</div>
+		<div class="col-md-4">
+			<%= render partial: "right" %>
+		</div>
+	</div>
 
 </div>
 

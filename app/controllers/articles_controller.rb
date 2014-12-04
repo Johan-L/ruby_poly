@@ -23,6 +23,8 @@ require 'rest_client'
 
      	article_resp = ContentHelper.get_content("#{major}.#{minor}")
 
+     	puts(article_resp)
+
 	  	paresed_article = JSON(article_resp)
 
 		@article = Article.new
