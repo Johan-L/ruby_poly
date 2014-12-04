@@ -7,10 +7,18 @@ class ArticlesController < ApplicationController
 
     def new
     	puts "NEW"	  	
-    	a = Article.new()
-	  	a.title = "Title"
-	  	a.text = "Text"
-	  	puts a.inspect
+
+    end
+
+    def edit
+    	puts "Edit"
+
+		@article = Article.new
+    	@article.title = params[:id] + "." + params[:format]
+
+
+	  	puts(@article.title)
+
     end
 
 
