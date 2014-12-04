@@ -1,0 +1,8 @@
+<div>
+	<%= get_value_from_json(article, "contentData")["title"] %>
+
+	<div>
+		<%= get_content2(@article.text["contentData"]["images"][0]) %>
+		<%= render partial: "image", locals: {image: get_content2(get_value_from_json(article, "contentData")["images"][0])} %>
+	</div>
+</div>

@@ -1,0 +1,10 @@
+<img src="<%= "http://127.0.0.1:8080\/image\/" + get_value_from_json(image, "versionId") + "\/image.jpg?w=750" %>"/ >
+<p class="meta">
+	<%= get_value_from_json(image, "contentData")["description"] %>
+	<span class="byline"><%= get_value_from_json(image, "contentData")["byline"] %></span>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= image %>
+</p>

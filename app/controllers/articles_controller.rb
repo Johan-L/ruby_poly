@@ -1,6 +1,7 @@
-class ArticlesController < ApplicationController
-
+class ArticlesController < ApplicationController 
 	require 'ContentHelper'
+	helper ContentHelper
+
 	require 'json'	
 
 
@@ -20,13 +21,16 @@ require 'rest_client'
 		major = params[:id]
 	  	minor = params[:format]
 
-     	response = ContentHelper.get_content("#{major}.#{minor}")
+     	article_resp = ContentHelper.get_content("#{major}.#{minor}")
 
-	  	paresed_response = JSON(response)
+	  	paresed_article = JSON(article_resp)
 
 		@article = Article.new
-		@article.title = paresed_response["contentData"]["title"]
-		@article.text = paresed_response
+		@article.title = paresed_article["contentData"]["title"]
+		@article.text = paresed_article
+
+
+
 	end
 
 	def create
@@ -36,7 +40,21 @@ require 'rest_client'
 	  @article.save
 	  redirect_to @article
 	end
-	 
+	
+	def renderActionInOtherController(controller,action,params)
+	  controller.class_eval{
+	    def params=(params); @params = params end
+	    def params; @params end
+	  }
+	  c = controller.new
+	  c.request = @_request
+	  c.response = @_response
+	  c.params = params
+	  c.send(action)
+	  c.response.body
+	end
+
+
 	private
 	  	def article_params
 	    	params.require(:article).permit(:title, :text)

@@ -1,15 +1,22 @@
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
- 
-<p>
-  <strong>Text:</strong>
-  <%= @article.text["contentData"]["title"] %>
-</p>
+<div class="article">
+	<p>
+	  <strong>Title:</strong>
+	  <%= @article.title %>
+	</p>
+	 
 
-<p>
-  <strong>Text:</strong>
-  <%= JSON.pretty_generate(@article.text) %>
-</p>
+	<div>
+		<%= get_content2(@article.text["contentData"]["images"][0]) %>
+		<%= render partial: "image", locals: {image: get_content2(@article.text["contentData"]["images"][0])} %>
+	</div>	
+
+
+	<p>
+	  <strong>Text:</strong>
+	  <%= JSON.pretty_generate(@article.text) %>
+	</p>
+
+</div>
+
+
 
